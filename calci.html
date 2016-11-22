@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+        function foo(){
+        var op1 = document.getElementById("operand1").value;
+        var op2 = document.getElementById("operand2").value;
+        var op = document.getElementById("operator3").value;
+        if(op ==  "/")
+        {    
+            op = "%";
+        
+        }
+        var xmlHttp = new XMLHttpRequest(); xmlHttp.open( "GET","http://54.244.41.255:5000/"+op1+"/"+op2+"/"+op , false );
+        xmlHttp.setRequestHeader("Access-Control-Allow-Origin","*"); 
+        xmlHttp.send(); 
+        var JsonObject= JSON.parse(xmlHttp.responseText);
+                document.getElementById("ans").innerHTML = JsonObject.answer;
+
+        }
+        </script>
+    </head>
+    
+    <body>
+        OPERAND1
+        <input type="text" id="operand1"/>
+        <br> <br>
+        OPERAND2
+        <input type="text" id="operand2"/>
+        <br> <br>
+        OPERATOR
+        <input type="text" id="operator3"/>
+        <br> <br>
+        <button onclick="foo()">
+            SUBMIT
+        </button>
+        <div id="ans"> </div>
+   </body>
+</html>
